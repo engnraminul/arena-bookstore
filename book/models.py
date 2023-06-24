@@ -22,4 +22,4 @@ class Book(models.Model):
 
     #ordering
     class Meta:
-        ordering = ['-product_created']
+        ordering = ['-created']
