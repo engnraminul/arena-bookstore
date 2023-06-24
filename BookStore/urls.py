@@ -9,6 +9,7 @@ from django.contrib. staticfiles.urls import static, staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('book.urls')),
+    path('cart/',include('cart.urls')),
 ]
 urlpatterns +=staticfiles_urlpatterns()
 urlpatterns +=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

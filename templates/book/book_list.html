@@ -20,7 +20,7 @@
             <strong class="">{{book.price}}</strong>
           </div>
           <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-            <a href="#" class="btn btn-outline-primary w-100">Add to cart</a>
+            <a href="{% url 'cart:cart-form' book.id %}" class="btn btn-outline-primary w-100">Add to cart</a>
           </div>
         </div>
       </div>
