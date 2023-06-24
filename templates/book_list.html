@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+{% block title %} Books List{% endblock title %}
+
+{% block body %}
 {% for book in books %}
 <img src="{{book.image.url}}" alt="product image">
 <h2>{{ book.title }}</h2>
@@ -6,3 +10,4 @@
 <p>Price: ${{ book.price }}</p>
 <hr>
 {% endfor %}
+{% endblock %}
