@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+def book_list(equest):
+    return HttpResponse("ok")
+
+
+
