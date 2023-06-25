@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+
 
 
 STATUS_TYPE = (
@@ -24,17 +24,3 @@ class Book(models.Model):
     #ordering
     class Meta:
         ordering = ['-created']
-
-class Cart(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    items = models.ManyToManyField('Book', through='CartItem')
-
-class CartItem(models.Model):
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
-    subtotal = models.DecimalField(max_digits=6, decimal_places=2)
-
-    def update_subtotal(self):
-        self.subtotal = self.book.price * self.quantity
-        self.save()
