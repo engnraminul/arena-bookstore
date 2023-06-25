@@ -22,6 +22,7 @@ def cart_form(request, id):
 
 def add_to_cart(request, id):
     book = get_object_or_404(Book, id=id)
+    
 
     if request.method == 'POST':
         quantity = int(request.POST['quantity'])
@@ -35,7 +36,7 @@ def add_to_cart(request, id):
         # Update the quantity of the cart item
         cart_item.quantity += quantity
         cart_item.save()
-
+        cart_item = CartItem.objects.filter(cart__user=request.user)
         return render(request, 'cart/cart_view.html', {'cart': cart_item})
 
     return render(request, 'book/book_list.html', {'book': book})
