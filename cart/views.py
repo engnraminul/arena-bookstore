@@ -1,4 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Book, Cart, CartItem
+from book.urls import *
 from book.models import Book
 from .models import Cart
 from book.views import book_list
@@ -15,19 +18,7 @@ def cart_form(request, id):
     }
     return render(request, 'cart/cart_form.html', context)
 
-# def add_to_cart(request, id):
-#     book = get_object_or_404(Book, id=id)
 
-#     if request.method == 'POST':
-#         quantity = int(request.POST['quantity'])
-#         cart = Cart.objects.get_or_create(user=request.user)
-#         book.cart.quantity += quantity
-#         book.cart.save()
-
-#     return redirect('book_list')
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Book, Cart, CartItem
-from book.urls import *
 
 def add_to_cart(request, id):
     book = get_object_or_404(Book, id=id)
@@ -45,9 +36,10 @@ def add_to_cart(request, id):
         cart_item.quantity += quantity
         cart_item.save()
 
-        return HttpResponse("Successfully add to cart")
+        return render(request, 'cart/cart_view.html', {'cart': cart_item})
 
     return render(request, 'book/book_list.html', {'book': book})
 
-def cart_sucess(request):
-    return render(request, ' cart/cart_sucess.html',)
+def cart_view(request):
+    cart = CartItem.objects.filter(cart__user=request.user)
+    return render(request, 'cart/cart_view.html', {'cart': cart})
