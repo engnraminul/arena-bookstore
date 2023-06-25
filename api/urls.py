@@ -10,7 +10,7 @@ app_name = 'api'
 
 urlpatterns = [
     # Other URL patterns
-    path('add/', include(router.urls)),
+    path('', include(router.urls)),
     path('cart/', include(router.urls)),
     
 ]

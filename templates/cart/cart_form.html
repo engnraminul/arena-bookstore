@@ -3,15 +3,19 @@
 
 {% block body %}
 
-<h1>Add to Cart</h1>
+
+
 <div class="product">
-    <h3>{{ book.title }}</h3>
-    <p>Price: {{ book.price }}</p>
+    <h3> Book Name: {{ book.title }}</h3>
+    <h6>Price: {{ book.price }}</h6>
+    <p>Please select your Quantity</p>
+    
     <form method="POST" action="{% url 'cart:add_to_cart' id=book.id %}">
         {% csrf_token %}
         <input type="number" name="quantity" value="1" min="1">
         <button type="submit">Add to Cart</button>
     </form>
 </div>
+
 
 {% endblock %}
